@@ -10,7 +10,7 @@ from SmartServer.models import DevicesDbTable
 class DevicesChange(object):
 
     @staticmethod
-    def devicesChangeJosnHelper(value,info):
+    def devicesChangeJsonHelper(value, info):
         item = {}
         item.setdefault("value",value)
         item.setdefault("info",info)
@@ -37,9 +37,9 @@ class DevicesChange(object):
                                     deviceStatus=deviceStatus,
                                     raspberryId=raspberryId)
             deviceDb.save()
-            return HttpResponse(DevicesChange.devicesChangeJosnHelper(0,"insert to db success",deviceDb.id))
+            return HttpResponse(DevicesChange.devicesChangeJsonHelper(1, "插入设备信息到数据库中"))
 
-        return HttpResponse(DevicesChange.devicesChangeJosnHelper(0,"name has been exist",0))
+        return HttpResponse(DevicesChange.devicesChangeJsonHelper(0, "数据库中存在该设备名"))
 
     @staticmethod
     def deleteDevice(request):
@@ -56,7 +56,7 @@ class DevicesChange(object):
         try:
             deviceDb = DevicesDbTable.objects.get(deviceName=deviceName)
         except DevicesDbTable.DoesNotExist:
-            return HttpResponse(DevicesChange.devicesChangeJosnHelper(0, "name is not exist", 0))
+            return HttpResponse(DevicesChange.devicesChangeJsonHelper(0, "要删除的设备信息不存在"))
 
         deviceDb.delete()
-        return HttpResponse(DevicesChange.devicesChangeJosnHelper(1, "delete db success", 0))
+        return HttpResponse(DevicesChange.devicesChangeJsonHelper(1, "从数据库中删除设备信息"))

@@ -24,11 +24,11 @@ class DeviceControl(object):
         try:
             devicesDb = DevicesDbTable.objects.get(devicename=devicename)
         except DevicesDbTable.DoesNotExist:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0,""))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0,"数据库中不存在该设备信息"))
 
         status = devicesDb.deviceStatus
         if status == 1:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "该设备已经启用"))
 
         raspberryId = devicesDb.raspberryId
         retValue = RaspberryControl.raspberryOn(raspberryId)
@@ -36,9 +36,9 @@ class DeviceControl(object):
         if retValue == True:
             devicesDb.deviceStatus = 1
             devicesDb.save()
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(1,"on success"))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(1,"设备启动成功"))
         else:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "on fail"))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "设备启动失败"))
 
 
     @staticmethod
@@ -49,11 +49,11 @@ class DeviceControl(object):
         try:
             devicesDb = DevicesDbTable.object.gets(devicename=devicename)
         except DevicesDbTable.DoesNotExist:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "数据库中不存在该设备信息"))
 
         status = devicesDb.deviceStatus
         if status == 0:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "该设备已经关闭"))
 
         raspberryId = devicesDb.raspberryId
         retValue = RaspberryControl.raspberryOff(raspberryId)
@@ -61,24 +61,22 @@ class DeviceControl(object):
         if retValue == True:
             devicesDb.deviceStatus = 0
             devicesDb.save()
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(1, "off success"))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(1, "设备关闭成功"))
         else:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "off fail"))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "设备关闭失败"))
 
     @staticmethod
     def allDeviceOn(request):
-        devicename = "电饭煲"
 
         try:
             devicesDbs = DevicesDbTable.objects.all()
         except DevicesDbTable.DoesNotExist:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "数据库中没有记录"))
 
         for devicesDb in devicesDbs:
 
             status = devicesDb.deviceStatus
             if status == 1:
-                # return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
                 continue
 
             raspberryId = devicesDb.raspberryId
@@ -87,9 +85,9 @@ class DeviceControl(object):
             if retValue == True:
                 devicesDb.deviceStatus = 1
                 devicesDb.save()
-                # return HttpResponse(DeviceControl.deviceControlJsonHelper(1, "on success"))
-            # else:
-                # return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "on fail"))
+
+        return HttpResponse(DeviceControl.deviceControlJsonHelper(1,"所有的设备都尝试启动"))
+
 
     @staticmethod
     def allDeviceOff(request):
@@ -97,13 +95,12 @@ class DeviceControl(object):
         try:
             devicesDbs = DevicesDbTable.objects.all()
         except DevicesDbTable.DoesNotExist:
-            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
+            return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "数据库中没有记录"))
 
         for devicesDb in devicesDbs:
 
             status = devicesDb.deviceStatus
             if status == 0:
-                # return HttpResponse(DeviceControl.deviceControlJsonHelper(0, ""))
                 continue
 
             raspberryId = devicesDb.raspberryId
@@ -112,6 +109,5 @@ class DeviceControl(object):
             if retValue == True:
                 devicesDb.deviceStatus = 0
                 devicesDb.save()
-                # return HttpResponse(DeviceControl.deviceControlJsonHelper(1, "on success"))
-            # else:
-                # return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "on fail"))
+
+        return HttpResponse(DeviceControl.deviceControlJsonHelper(1, "所有的设备都尝试关闭"))
