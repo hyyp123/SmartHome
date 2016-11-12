@@ -16,6 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from SmartServer.views.DevicesChange import DevicesChange
+from SmartServer.views.DeviceControl import DeviceControl
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^device/add', DevicesChange.addDevice),
+    url(r'^device/delete', DevicesChange.deleteDevice),
+
+    url(r'^device/oneOn',DeviceControl.oneDeviceOn),
+    url(r'^device/oneOff',DeviceControl.oneDeviceOff),
+    url(r'^device/allOn',DeviceControl.allDeviceOn),
+    url(r'^device/allOff',DeviceControl.allDeviceOff),
+    # url(r'^device/update', DevicesChange.updateDevice),
 ]
