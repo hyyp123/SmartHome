@@ -1,10 +1,8 @@
 #! -*- coding=utf -*-
-
-from SmartServer.models import DevicesDbTable
-
 import threading
 import platform
 
+from SmartServer.models import DevicesDbTable
 
 class RaspberryControl(object):
     instance = None
