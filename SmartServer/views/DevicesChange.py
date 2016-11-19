@@ -20,26 +20,21 @@ class DevicesChange(object):
     @staticmethod
     def addDevice(request):
 
-        body1 = {"name":"电饭煲","status":"0"}
-        # body2 = {"name": "电水壶", "status": "0"}
-        # body3 = {"name": "电磁炉", "status": "0"}
-        # body4 = {"name": "煮蛋器", "status": "0"}
+        if request.method == 'GET':
+            deviceName=request.GET['name']
+            deviceStatus=request.GET['status']
+            raspberryId=0
 
-        deviceObj = json.loads(body1)
-        deviceName=deviceObj["name"]
-        deviceStatus=deviceObj["status"]
-        raspberryId=0
+            try:
+                deviceDb = DevicesDbTable.objects.get(deviceName=deviceName)
+            except DevicesDbTable.DoesNotExist:
+                deviceDb=DevicesDbTable(deviceName=deviceName,
+                                        deviceStatus=deviceStatus,
+                                        raspberryId=raspberryId)
+                deviceDb.save()
+                return HttpResponse(DevicesChange.devicesChangeJsonHelper(1, "插入设备信息到数据库中"))
 
-        try:
-            deviceDb = DevicesDbTable.objects.get(deviceName=deviceName)
-        except DevicesDbTable.DoesNotExist:
-            deviceDb=DevicesDbTable(deviceName=deviceName,
-                                    deviceStatus=deviceStatus,
-                                    raspberryId=raspberryId)
-            deviceDb.save()
-            return HttpResponse(DevicesChange.devicesChangeJsonHelper(1, "插入设备信息到数据库中"))
-
-        return HttpResponse(DevicesChange.devicesChangeJsonHelper(0, "数据库中存在该设备名"))
+            return HttpResponse(DevicesChange.devicesChangeJsonHelper(0, "数据库中存在该设备名"))
 
     @staticmethod
     def deleteDevice(request):
