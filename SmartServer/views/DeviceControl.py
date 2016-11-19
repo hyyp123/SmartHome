@@ -30,8 +30,8 @@ class DeviceControl(object):
         if status == 1:
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "该设备已经启用"))
 
-        raspberryId = devicesDb.raspberryId
-        retValue = RaspberryControl.raspberryOn(raspberryId)
+        pin = devicesDb.raspberryId
+        retValue = RaspberryControl.GetInstance().raspberryOn(pin)
 
         if retValue == True:
             devicesDb.deviceStatus = 1
@@ -55,8 +55,8 @@ class DeviceControl(object):
         if status == 0:
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "该设备已经关闭"))
 
-        raspberryId = devicesDb.raspberryId
-        retValue = RaspberryControl.raspberryOff(raspberryId)
+        pin = devicesDb.raspberryId
+        retValue = RaspberryControl.GetInstance().raspberryOff(pin)
 
         if retValue == True:
             devicesDb.deviceStatus = 0
@@ -79,8 +79,8 @@ class DeviceControl(object):
             if status == 1:
                 continue
 
-            raspberryId = devicesDb.raspberryId
-            retValue = RaspberryControl.raspberryOn(raspberryId)
+            pin = devicesDb.raspberryId
+            retValue = RaspberryControl.GetInstance().raspberryOn(pin)
 
             if retValue == True:
                 devicesDb.deviceStatus = 1
@@ -103,8 +103,8 @@ class DeviceControl(object):
             if status == 0:
                 continue
 
-            raspberryId = devicesDb.raspberryId
-            retValue = RaspberryControl.raspberryOff(raspberryId)
+            pin = devicesDb.raspberryId
+            retValue = RaspberryControl.GetInstance().raspberryOff(pin)
 
             if retValue == True:
                 devicesDb.deviceStatus = 0
