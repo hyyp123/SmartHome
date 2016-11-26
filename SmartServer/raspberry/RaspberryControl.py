@@ -13,6 +13,9 @@ class RaspberryControl(object):
             import RPi.GPIO as GPIO
             GPIO.setwarnings(False)
             GPIO.setmode(GPIO.BOARD)
+            print "raspberrypi运行"
+        else:
+            print "非raspberrypi运行"
 
     @staticmethod
     def GetInstance():
@@ -25,20 +28,26 @@ class RaspberryControl(object):
 
         return RaspberryControl.instance
 
-    def raspberryOn(index):
+    def raspberryOn(self,index):
 
         if platform.node() == 'raspberrypi':
             import RPi.GPIO as GPIO
-            GPIO.output(index,GPIO.OUT)
+            GPIO.setup(index,GPIO.OUT)
             GPIO.output(index, GPIO.HIGH)
+            print "raspberrypi运行"
+        else:
+            print "非raspberrypi运行"
         print "下标为%d的树莓派已经启动" %index
         return True
 
-    def raspberryOff(index):
+    def raspberryOff(self,index):
 
         if platform.node() == 'raspberrypi':
             import RPi.GPIO as GPIO
-            GPIO.output(index, GPIO.OUT)
+            GPIO.setup(index, GPIO.OUT)
             GPIO.output(index, GPIO.LOW)
+            print "raspberrypi运行"
+        else:
+            print "非raspberrypi运行"
         print "下标为%d的树莓派已经关闭" % index
         return True

@@ -86,7 +86,6 @@ class DeviceControl(object):
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "数据库中没有记录"))
 
         for devicesDb in devicesDbs:
-
             status = devicesDb.deviceStatus
             if status == 1:
                 continue
