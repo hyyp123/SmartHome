@@ -9,13 +9,8 @@ class RaspberryControl(object):
     mutex = threading.Lock()
 
     def _init__(self):
-        if platform.node() == 'raspberrypi':
-            import RPi.GPIO as GPIO
-            GPIO.setwarnings(False)
-            GPIO.setmode(GPIO.BOARD)
-            print "raspberrypi运行"
-        else:
-            print "非raspberrypi运行"
+        print "构造函数被调用"
+        pass
 
     @staticmethod
     def GetInstance():
@@ -24,7 +19,14 @@ class RaspberryControl(object):
             RaspberryControl.mutex.acquire()
             if (RaspberryControl.instance == None):
                 RaspberryControl.instance = RaspberryControl()
-                RaspberryControl.mutex.release()
+                if platform.node() == 'raspberrypi':
+                    import RPi.GPIO as GPIO
+                    GPIO.setwarnings(False)
+                    GPIO.setmode(GPIO.BOARD)
+                    print "raspberrypi运行"
+                else:
+                    print "非raspberrypi运行"
+            RaspberryControl.mutex.release()
 
         return RaspberryControl.instance
 

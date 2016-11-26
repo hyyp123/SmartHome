@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38e81393-0c48-471a-a3cc-8a3dc72b2ac8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py" afterPath="$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SmartServer/views/DeviceControl.py" afterPath="$PROJECT_DIR$/SmartServer/views/DeviceControl.py" />
     </list>
     <ignored path="SmartHome.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,21 +58,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceControl.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeviceControl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SmartServer/views/DeviceControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="92" column="39" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="39" />
+            <state relative-caret-position="3276">
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RaspberryControl.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RaspberryControl.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="32" />
+            <state relative-caret-position="181">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -103,8 +100,8 @@
         <option value="$PROJECT_DIR$/SmartServer/views/TestView.py" />
         <option value="$PROJECT_DIR$/SmartServer/views/DevicesChange.py" />
         <option value="$PROJECT_DIR$/SmartHome/urls.py" />
-        <option value="$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py" />
         <option value="$PROJECT_DIR$/SmartServer/views/DeviceControl.py" />
+        <option value="$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py" />
       </list>
     </option>
   </component>
@@ -412,7 +409,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="24" width="1922" height="1033" extended-state="7" />
+    <frame x="-1" y="24" width="1922" height="1033" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19240907" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -844,18 +841,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py">
+    <entry file="file://$PROJECT_DIR$/SmartServer/views/DeviceControl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="3276">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SmartServer/views/DeviceControl.py">
+    <entry file="file://$PROJECT_DIR$/SmartServer/raspberry/RaspberryControl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="92" column="39" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="39" />
+        <state relative-caret-position="181">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
           <folding />
         </state>
       </provider>
