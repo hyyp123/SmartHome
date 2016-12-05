@@ -34,7 +34,7 @@ class RaspberryControl(object):
         if platform.node() == 'raspberrypi':
             import RPi.GPIO as GPIO
             GPIO.setup(index,GPIO.OUT)
-            GPIO.output(index, GPIO.HIGH)
+            GPIO.output(index, GPIO.LOW)
             print "raspberrypi运行"
         else:
             print "非raspberrypi运行"
@@ -46,7 +46,7 @@ class RaspberryControl(object):
         if platform.node() == 'raspberrypi':
             import RPi.GPIO as GPIO
             GPIO.setup(index, GPIO.OUT)
-            GPIO.output(index, GPIO.LOW)
+            GPIO.output(index, GPIO.HIGH)
             print "raspberrypi运行"
         else:
             print "非raspberrypi运行"
