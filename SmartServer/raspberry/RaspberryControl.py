@@ -10,7 +10,6 @@ class RaspberryControl(object):
 
     def _init__(self):
         print "构造函数被调用"
-        pass
 
     @staticmethod
     def GetInstance():
