@@ -26,8 +26,11 @@ urlpatterns = [
     url(r'^device/addDevice', DevicesChange.addDevice),
     url(r'^device/deleteDevice', DevicesChange.deleteDevice),
 
+    url(r'^device/oneDevice',DeviceControl.oneDevice),
     url(r'^device/oneDeviceOn',DeviceControl.oneDeviceOn),
     url(r'^device/oneDeviceOff',DeviceControl.oneDeviceOff),
+
+    url(r'^device/allDevice',DeviceControl.allDevice),
     url(r'^device/allDeviceOn',DeviceControl.allDeviceOn),
     url(r'^device/allDeviceOff',DeviceControl.allDeviceOff),
     url(r'^order/oneDevice',ClockOneTime.oneDevicesOrder),

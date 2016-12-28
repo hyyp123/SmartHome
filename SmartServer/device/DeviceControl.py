@@ -20,20 +20,30 @@ class DeviceControl(object):
         return json.dumps(item)
 
     @staticmethod
+    def oneDevice(request):
+        if request.method == 'GET':
+            isOn = int(request.GET['isOn'])
+            # 关
+            if isOn == 0:
+                return DeviceControl.oneDeviceOff(request)
+            elif isOn == 1:
+                return DeviceControl.oneDeviceOn(request)
+
+    @staticmethod
     def oneDeviceOn(request):
 
         if request.method == 'GET':
-            deviceName = request.GET['name']
-            num = request.GET['num']
+            # deviceName = request.GET['name']
+            num = int(request.GET['num'])
 
         try:
-            devicesDb = DevicesDbTable.objects.get(deviceName=deviceName)
+            devicesDb = DevicesDbTable.objects.get(id=num)
         except DevicesDbTable.DoesNotExist:
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0,"数据库中不存在该设备信息"))
 
         status = devicesDb.deviceStatus
         if status == 1:
-            print '%s 设备已经启动' %deviceName
+            print '%d 设备已经启动' %num
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "该设备已经启用"))
 
         pin = devicesDb.raspberryId
@@ -42,10 +52,10 @@ class DeviceControl(object):
         if retValue == True:
             devicesDb.deviceStatus = 1
             devicesDb.save()
-            print '%s 设备启动成功 ' %deviceName
+            print '%d 设备启动成功 ' %num
             return HttpResponse(DeviceControl.deviceControlJsonHelper(1,"设备启动成功"))
         else:
-            print "%s 设备启动失败" %deviceName
+            print "%d 设备启动失败" %num
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "设备启动失败"))
 
 
@@ -53,11 +63,11 @@ class DeviceControl(object):
     def oneDeviceOff(request):
 
         if request.method == 'GET':
-            deviceName = request.GET['name']
-            num = request.GET['num']
+            # deviceName = request.GET['name']
+            num = int(request.GET['num'])
 
         try:
-            devicesDb = DevicesDbTable.objects.get(deviceName=deviceName)
+            devicesDb = DevicesDbTable.objects.get(id=num)
         except DevicesDbTable.DoesNotExist:
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "数据库中不存在该设备信息"))
 
@@ -71,11 +81,22 @@ class DeviceControl(object):
         if retValue == True:
             devicesDb.deviceStatus = 0
             devicesDb.save()
-            print "%s 设备关闭成功" %deviceName
+            print "%d 设备关闭成功" %num
             return HttpResponse(DeviceControl.deviceControlJsonHelper(1, "设备关闭成功"))
         else:
-            print "%s 设备关闭失败" % deviceName
+            print "%d 设备关闭失败" % num
             return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "设备关闭失败"))
+
+    @staticmethod
+    def allDevice(request):
+        if request.method == 'GET':
+            isOn = int(request.GET['isOn'])
+            # 关
+            if isOn == 0:
+                return DeviceControl.allDeviceOff(request)
+            elif isOn == 1:
+                return DeviceControl.allDeviceOn(request)
+
 
     @staticmethod
     def allDeviceOn(request):

@@ -21,7 +21,7 @@ class DevicesChange(object):
     def addDevice(request):
 
         if request.method == 'GET':
-            deviceName=request.GET['name']
+            # deviceName=request.GET['name']
             deviceStatus=request.GET['status']
             raspberryId=0
 
