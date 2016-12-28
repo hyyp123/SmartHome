@@ -10,6 +10,7 @@ from django.http import Http404,HttpResponse
 from SmartServer.models import DevicesDbTable
 from SmartServer.raspberry.RaspberryControl import RaspberryControl
 
+# 不再支持设备名字，改为设备序号，1.。。4
 class DeviceControl(object):
 
     @staticmethod

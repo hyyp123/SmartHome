@@ -59,7 +59,6 @@ class ClockOneTime(object):
             print ClockOneTime.clockOneTimeJsonHelper(1,"设备启动成功")
         else:
             print " 设备启动失败"
-            # return HttpResponse(DeviceControl.deviceControlJsonHelper(0, "设备启动失败"))
             print ClockOneTime.clockOneTimeJsonHelper(0, "设备启动失败")
 
     @staticmethod
@@ -79,7 +78,7 @@ class ClockOneTime(object):
 
         if request.method == 'GET':
             deviceNum = request.GET['num']
-            deviceName=request.GET['name']
+            # deviceName=request.GET['name']
             deviceTime=request.GET['time']
 
         print "deviceName " + deviceName + "deviceNum " + deviceNum + "deviceTime " + deviceTime
@@ -106,7 +105,7 @@ class ClockOneTime(object):
                                                                   devHour,
                                                                   devMinute,
                                                                   0),
-                                       id=deviceName,
+                                       id=deviceNum,
                                        args=[deviceNum])
         try:
             if ClockOneTime.isRunning == False:
@@ -117,34 +116,3 @@ class ClockOneTime(object):
         ClockOneTime.scheduler.print_jobs()
 
         return HttpResponse(ClockOneTime.clockOneTimeJsonHelper(1,"success"))
-
-    # @staticmethod
-    # def clockDate(request):
-    #     ClockOneTime.GetInstance()
-    #     print datetime.now()
-    #     mid = 'my_job_id %s' % datetime.now()
-    #     ClockOneTime.scheduler.add_job(ClockOneTime.run,
-    #                                    'date',
-    #                                    run_date=datetime(2016, 12, 5, 2, 30, 30),
-    #                                    id= mid)
-    #     try:
-    #         if ClockOneTime.isRunning == False:
-    #            ClockOneTime.scheduler.start()
-    #            ClockOneTime.isRunning = True
-    #     except (KeyboardInterrupt, SystemExit):
-    #         ClockOneTime.scheduler.shutdown()
-    #     ClockOneTime.scheduler.print_jobs()
-    #     return HttpResponse("HAHA")
-    #
-    # @staticmethod
-    # def emurClockList(request):
-    #     ClockOneTime.GetInstance()
-    #
-    #     mid = 'my_job_id %s' % datetime.now()
-    #     ClockOneTime.scheduler.add_job(ClockOneTime.run,
-    #                                    'date',
-    #                                    run_date=datetime(2016, 12, 5, 2, 20, 30),
-    #                                    id= mid)
-    #
-    #     ClockOneTime.scheduler.print_jobs()
-    #     return HttpResponse("HAHA2")
